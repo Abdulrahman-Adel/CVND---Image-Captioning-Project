@@ -80,8 +80,10 @@ class DecoderRNN(nn.Module):
             _, max_index = torch.max(output, dim=1) 
             
             outputs.append(max_index.cpu().numpy()[0].item()) 
-        
-        
+            
+            if(max_index.cpu().numpy()[0].item() == 1):
+                break
+      
             inputs = self.embed(max_index) 
             inputs = inputs.unsqueeze(1)
             
